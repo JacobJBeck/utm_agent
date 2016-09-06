@@ -24,8 +24,8 @@ class agent
 {
 public:
     agent(ros::NodeHandle nh){
-        ros::param::get("utm_agent/botnames",botnames);
-        for (PIONEERNAME n : botnames){
+        ros::param::get("utm_agent/robot_names",robot_names);
+        for (PIONEERNAME n : robot_names){
             string topic = n +"/membership";
             ros::Subscriber sub = nh.subscribe(topic, 50, &agent::trafficCallback, this);
             subPioneer.push_back(sub);
@@ -49,15 +49,15 @@ private:
     vector<ros::Subscriber> subPioneer;
     ros::Publisher pubAgentGraph ;
     matrix1d distances;
-    vector<PIONEERNAME> botnames;
-    set<PIONEERNAME> botnames_called;
+    vector<PIONEERNAME> robot_names;
+    set<PIONEERNAME> robot_names_called;
 
     agent_msgs::UtmGraph agentGraph ;
     vector<NeuralNet*> agents;
     matrix1d traffic;
 
     void trafficCallback(const agent_msgs::AgentMembership& msg){//, const std::string &topic){
-        SwapTraffic(msg.parent, msg.child, msg.botname);
+        SwapTraffic(msg.parent, msg.child, msg.robot_name);
         Publish();
     }
 
@@ -67,11 +67,11 @@ private:
         agentGraph.policy_output_costs[index] = cost ;
     }
 
-    void SwapTraffic(UINT prevLink, UINT newLink, PIONEERNAME botname)
+    void SwapTraffic(UINT prevLink, UINT newLink, PIONEERNAME robot_name)
     {
-        bool first_call = botnames_called.count(botname)==0;
+        bool first_call = robot_names_called.count(robot_name)==0;
         if (first_call){
-            botnames_called.insert(botname);
+            robot_names_called.insert(robot_name);
         } else {
             traffic[prevLink]--;
             UpdateGraphCosts(prevLink);
