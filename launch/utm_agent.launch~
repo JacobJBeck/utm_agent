@@ -1,0 +1,8 @@
+<launch>
+  <param name="num_agents" value="6" />
+  <param name="num_pioneers" value="10" />
+  <param name="pioneers_poses" value="$(find pioneer_description)/launch/pioneer_poses.yaml" />
+  <param name="nn_dir" value="$(find utm_agent)/neural_nets" />
+  <param name="agent_locations_file" value="agent_locations.csv"/>
+  <node pkg="utm_agent" type="utm_agent_node" name="utm_agent" respawn="false" output="screen" />
+</launch>

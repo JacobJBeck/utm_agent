@@ -1,8 +1,8 @@
-#include "nn_wrapper.h"
+#include "utm_agent.h"
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "utm_system") ;
+  ros::init(argc, argv, "utm_agent") ;
 
   ros::NodeHandle nHandle ;
 

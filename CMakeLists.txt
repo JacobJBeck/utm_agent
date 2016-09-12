@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nn_wrapper)
+project(utm_agent)
 SET(CMAKE_CXX_FLAGS "-std=c++1y")
 
 ## Find catkin macros and libraries
@@ -102,7 +102,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES nn_wrapper
+  LIBRARIES utm_agent
   CATKIN_DEPENDS roscpp rospy std_msgs
   DEPENDS system_lib
 )
@@ -122,24 +122,24 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(nn_wrapper
-#   src/${PROJECT_NAME}/nn_wrapper.cpp
+# add_library(utm_agent
+#   src/${PROJECT_NAME}/utm_agent.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(nn_wrapper ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(utm_agent ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(nn_wrapper_node src/nn_wrapper.cpp)
+add_executable(utm_agent_node src/utm_agent.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(nn_wrapper_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(utm_agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(nn_wrapper_node
+target_link_libraries(utm_agent_node
    ${catkin_LIBRARIES}
    /home/aadi1/Source/carrie_lib/build/libLEARNING.a
    /home/aadi1/Source/carrie_lib/build/libMATH.a
@@ -160,7 +160,7 @@ target_link_libraries(nn_wrapper_node
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS nn_wrapper nn_wrapper_node
+# install(TARGETS utm_agent utm_agent_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -185,7 +185,7 @@ target_link_libraries(nn_wrapper_node
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_nn_wrapper.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_utm_agent.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

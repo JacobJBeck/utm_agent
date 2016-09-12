@@ -1,0 +1,33 @@
+modes:
+ reward: global             # global, difference_downstream, difference_touched, difference_realloc, difference_avg
+ airspace: saved            # saved, generated
+ traffic: constant          # deterministic, probabilistic, constant
+ agent: link                # sector, link
+ search: astar              # astar, rags
+ square: true               # true, false
+ objective: delay           # delay, conflicts
+ disposal: keep             # keep, trash
+ types: false               # false -- don't use type, true -- do use types
+ state: single              # single, cardinal
+ numbered_domain: false     # true, false	
+
+constants:
+ sectors: 3
+ alpha: 1000
+ capacity: 2
+ steps: 200
+ vehicles: 4
+ # generation_probability: 0.5
+ # generation_rate: 10
+ arrival_threshold: 2
+ conflict_threshold: 2
+ xdim: 200
+ ydim: 200
+
+# Denotes the speed for each type
+types:
+ slow: 1
+ fast: 2
+
+files:
+ domain: C:\Users\Carrie\Source\Repos\projects\IROS2015\IROS2015\Domains\3_Sectors
