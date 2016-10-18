@@ -116,8 +116,8 @@ catkin_package(
 # include_directories(include)
 include_directories(
   include
-  ~/Source/carrie_lib/src/Learning/include
-  ~/Source/carrie_lib/src
+  $ENV{PWD}/src/carrie_lib/src/Learning/include
+  $ENV{PWD}/src/carrie_lib/src
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -141,8 +141,8 @@ add_dependencies(utm_agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 ## Specify libraries to link a library or executable target against
 target_link_libraries(utm_agent_node
    ${catkin_LIBRARIES}
-   /home/aadi1/Source/carrie_lib/build/libLEARNING.a
-   /home/aadi1/Source/carrie_lib/build/libMATH.a
+   $ENV{PWD}/src/carrie_lib/build/libLEARNING.a
+   $ENV{PWD}/src/carrie_lib/build/libMATH.a
 )
 
 #############
