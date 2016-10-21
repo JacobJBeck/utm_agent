@@ -41,7 +41,8 @@ public:
         int num_agents;
         nh.getParam("num_agents",num_agents);
         std::printf("Getting %i agents...\n", num_agents);
-
+        traffic = matrix1d(num_agents,0);
+        
         // Load the braaains...
         string nn_dir;
         nh.getParam("nn_dir", nn_dir);  // directory where all neural nets are stored
@@ -76,7 +77,10 @@ public:
         std::printf("Got %i distances...\n", static_cast<int>(distances.size()));
         */
 
-        pubAgentGraph = nh.advertise<agent_msgs::UtmGraph>("utm_graph", 10, true) ; // set boolean to false if no need to latch
+        pubAgentGraph = nh.advertise<agent_msgs::UtmGraph>("/utm_graph", 10, true) ; // set boolean to false if no need to latch
+        
+        // Finished initialization
+        ROS_INFO("Agents ready!");
     }
 
     ~agent() {}
@@ -103,17 +107,23 @@ private:
         agentGraph.policy_output_costs[index] = cost ;
     }
 
-    void SwapTraffic(UINT prevLink, UINT newLink, PIONEERNAME robot_name)
+    void SwapTraffic(int prevLink, int newLink, PIONEERNAME robot_name)
     {
-        bool first_call = robot_names_called.count(robot_name)==0;
-        if (first_call){
-            robot_names_called.insert(robot_name);
-        } else {
+        if(prevLink > 0 && newLink > 0)
+        {
+            bool first_call = robot_names_called.count(robot_name)==0;
+            if (first_call){
+                robot_names_called.insert(robot_name);
+            } else {
+                traffic[prevLink]--;
+                UpdateGraphCosts(prevLink);
+            }
+            traffic[newLink]++;
+            UpdateGraphCosts(newLink);
+        }else if(prevLink > 0){
             traffic[prevLink]--;
             UpdateGraphCosts(prevLink);
         }
-        traffic[newLink]++;
-        UpdateGraphCosts(newLink);
     }
 
     void Publish(){
