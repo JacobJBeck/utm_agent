@@ -116,8 +116,10 @@ catkin_package(
 # include_directories(include)
 include_directories(
   include
-  $ENV{PWD}/src/carrie_lib/src/Learning/include
-  $ENV{PWD}/src/carrie_lib/src
+  /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src
+  /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Learning/include
+  /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Math/include
+  /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/FileIO/include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -125,6 +127,20 @@ include_directories(
 # add_library(utm_agent
 #   src/${PROJECT_NAME}/utm_agent.cpp
 # )
+
+ add_library(llib
+   /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Learning/src/NeuroEvo.cpp
+   /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Learning/src/NeuralNet.cpp
+ )
+
+ add_library(mlib
+   /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Math/src/easymath.cpp
+   /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/Math/src/MatrixTypes.cpp
+ )
+
+ add_library(flib
+   /home/aadi-workstation/jacob_catkin_ws/src/carrie_lib/src/FileIO/src/FileIn.cpp
+ )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -141,8 +157,9 @@ add_dependencies(utm_agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 ## Specify libraries to link a library or executable target against
 target_link_libraries(utm_agent_node
    ${catkin_LIBRARIES}
-   $ENV{PWD}/src/carrie_lib/build/libLEARNING.a
-   $ENV{PWD}/src/carrie_lib/build/libMATH.a
+   llib
+   mlib
+   flib
 )
 
 #############
