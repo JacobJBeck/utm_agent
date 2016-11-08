@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(utm_agent)
-SET(CMAKE_CXX_FLAGS "-std=c++1y -g")
+SET(CMAKE_CXX_FLAGS "-std=c++1y")
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -213,3 +213,4 @@ install(DIRECTORY launch
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
